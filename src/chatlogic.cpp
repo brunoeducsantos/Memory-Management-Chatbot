@@ -14,20 +14,7 @@
 
 ChatLogic::ChatLogic()
 {
-    //initialize nodes and edges
-    for (auto it = std::begin(_nodes); it != std::end(_nodes); ++it)
-    {
-        _nodes.emplace_back(make_shared<GraphNode>(0));    
-    }
-
-    // delete all edges
-    for (auto it = std::begin(_edges); it != std::end(_edges); ++it)
-    {
-        _edges.emplace_back(make_shared<GraphEdge>(0));    
-
-    }
-
-
+    //TODO move chatbot
     // create instance of chatbot
     _chatBot = new ChatBot("../images/chatbot.png");
 
