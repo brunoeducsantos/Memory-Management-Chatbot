@@ -16,8 +16,10 @@ ChatLogic::ChatLogic()
 {
     //TODO move chatbot
     // create instance of chatbot
-    _chatBot = new ChatBot("../images/chatbot.png");
+        
 
+    _chatBot = new ChatBot("../images/chatbot.png");
+      // delete all nodes
     // add pointer to chatlogic so that chatbot answers can be passed on to the GUI
     _chatBot->SetChatLogicHandle(this);
 
@@ -103,7 +105,7 @@ void ChatLogic::LoadAnswerGraphFromFile(std::string filename)
                     if (type->second == "NODE")
                     {
                         // check if node with this ID exists already
-                        auto newNode = std::find_if(_nodes.begin(), _nodes.end(), [&id](unique_ptr<GraphNode> node) { return node->GetID() == id; });
+                        auto newNode = std::find_if(_nodes.begin(), _nodes.end(), [&id](unique_ptr<GraphNode> &node) { return node->GetID() == id; });
 
                         // create new element if ID does not yet exist
                         if (newNode == _nodes.end())
@@ -128,21 +130,21 @@ void ChatLogic::LoadAnswerGraphFromFile(std::string filename)
                         if (parentToken != tokens.end() && childToken != tokens.end())
                         {
                             // get iterator on incoming and outgoing node via ID search
-                            auto parentNode = std::find_if(_nodes.begin(), _nodes.end(), [&parentToken](unique_ptr<GraphNode> node) { return node->GetID() == std::stoi(parentToken->second); });
-                            auto childNode = std::find_if(_nodes.begin(), _nodes.end(), [&childToken](unique_ptr<GraphNode> node) { return node->GetID() == std::stoi(childToken->second); });
+                            auto parentNode = std::find_if(_nodes.begin(), _nodes.end(), [&parentToken](unique_ptr<GraphNode> &node) { return node->GetID() == std::stoi(parentToken->second); });
+                            auto childNode = std::find_if(_nodes.begin(), _nodes.end(), [&childToken](unique_ptr<GraphNode> &node) { return node->GetID() == std::stoi(childToken->second); });
 
                             // create new edge
                             unique_ptr<GraphEdge> edge (new GraphEdge(id));
                             edge->SetChildNode(move(childNode->get()));
                             edge->SetParentNode(move(parentNode->get()));
-                            _edges.push_back(edge);
-
                             // find all keywords for current node
                             AddAllTokensToElement("KEYWORD", tokens, *edge);
-
                             // store reference in child node and parent node
                             (*childNode)->AddEdgeToParentNode(move(edge.get()));
                             (*parentNode)->AddEdgeToChildNode(move(edge.get()));
+                            _edges.push_back(move(edge));
+
+                          
                         }
 
                     }
