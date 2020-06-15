@@ -94,14 +94,10 @@ ChatBot &ChatBot::operator=(ChatBot& source){
     delete[] _currentNode;
     delete[] _rootNode;
     delete[] _chatLogic;
-    
-    _currentNode= new GraphNode(0) ;
-    _chatLogic= new ChatLogic();
-    _rootNode = new GraphNode(0);
 
-    *_currentNode = *source._currentNode;
-    *_chatLogic = *source._chatLogic;
-    *_rootNode = *source._rootNode;
+    _currentNode = source._currentNode;
+    _chatLogic = source._chatLogic;
+    _rootNode = source._rootNode;
     return *this;
 }
 ////
