@@ -30,6 +30,8 @@ public:
     //// STUDENT CODE
     ////
     ChatBot(ChatBot && source);
+    ChatBot &operator=(ChatBot &&source); //move assignment operator
+
     ////
     //// EOF STUDENT CODE
 
