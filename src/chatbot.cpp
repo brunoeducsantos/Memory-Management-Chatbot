@@ -83,6 +83,9 @@ ChatBot &ChatBot::operator=(ChatBot& source){
 
      std::cout << "MOVING (assign) instance " << &source << " to instance " << this << std::endl;
     if (this == &source) return *this;
+    delete[] _rootNode;
+    delete[] _currentNode;
+    delete[] _chatLogic;
     _currentNode = source._currentNode;
     _chatLogic = source._chatLogic;
     _rootNode = source._rootNode;
