@@ -16,7 +16,7 @@ ChatLogic::ChatLogic()
 {
     //TODO move chatbot
     // create instance of chatbot
-        
+    
     _chatBot = new ChatBot("../images/chatbot.png");
     // delete all nodes
     // add pointer to chatlogic so that chatbot answers can be passed on to the GUI

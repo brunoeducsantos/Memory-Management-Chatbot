@@ -35,9 +35,6 @@ ChatBot::ChatBot(std::string filename)
 ChatBot::~ChatBot()
 {
     std::cout << "ChatBot Destructor" << std::endl;
-    delete[] _rootNode;
-    delete[] _currentNode;
-    delete[] _chatLogic;
     
     // deallocate heap memory
     if (_image != NULL) // Attention: wxWidgets used NULL and not nullptr
@@ -77,14 +74,10 @@ ChatBot &ChatBot::operator=(ChatBot &&source)
     return *this;
 }
 ChatBot::ChatBot(const ChatBot &source)
-{
-    _currentNode = new GraphNode(0);
-    _chatLogic = new ChatLogic();
-    _rootNode = new GraphNode(0);
-
-    *_currentNode = *source._currentNode;
-    *_chatLogic = *source._chatLogic;
-    *_rootNode = *source._rootNode;
+{   
+    _currentNode = source._currentNode;
+    _chatLogic = source._chatLogic;
+    _rootNode = source._rootNode;
     std::cout << "COPYING content of instance " << &source << " to instance " << this << std::endl;
 }
 ChatBot &ChatBot::operator=(ChatBot& source){ 
@@ -94,7 +87,6 @@ ChatBot &ChatBot::operator=(ChatBot& source){
     delete[] _currentNode;
     delete[] _rootNode;
     delete[] _chatLogic;
-
     _currentNode = source._currentNode;
     _chatLogic = source._chatLogic;
     _rootNode = source._rootNode;
