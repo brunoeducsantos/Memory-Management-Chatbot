@@ -195,6 +195,7 @@ void ChatLogic::SetPanelDialogHandle(ChatBotPanelDialog *panelDialog)
 
 void ChatLogic::SetChatbotHandle(ChatBot *chatbot)
 {
+    //Allows to "move" chatbot until GUI
     _chatBot = chatbot;
 }
 
