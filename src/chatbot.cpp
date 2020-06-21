@@ -12,7 +12,7 @@
 ChatBot::ChatBot()
 {
     // invalidate data handles
-    _image = nullptr;
+    _image = NULL;
     _chatLogic = nullptr;
     _rootNode = nullptr;
     _currentNode = nullptr;
@@ -75,7 +75,7 @@ ChatBot &ChatBot::operator=(ChatBot &&source)
     source._currentNode = nullptr;
     source._chatLogic = nullptr;
     source._rootNode = nullptr;
-    source._image=nullptr;
+    source._image=NULL;
     return *this;
 }
 ChatBot::ChatBot(const ChatBot &source)
