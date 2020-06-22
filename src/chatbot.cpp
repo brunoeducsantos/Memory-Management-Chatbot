@@ -53,8 +53,8 @@ ChatBot::ChatBot(ChatBot &&source)
     _currentNode = source._currentNode;
     _chatLogic = source._chatLogic;
     _rootNode = source._rootNode;
-    *_image = *source._image;
-    // _chatLogic->SetChatbotHandle(this);
+    _image = new wxBitmap(*source._image);
+    _chatLogic->SetChatbotHandle(this);
     source._currentNode = nullptr;
     source._chatLogic = nullptr;
     source._rootNode = nullptr;
@@ -69,9 +69,10 @@ ChatBot &ChatBot::operator=(ChatBot &&source)
         return *this;
     _currentNode = source._currentNode;
     _chatLogic = source._chatLogic;
-    _chatLogic->SetChatbotHandle(this);
     _rootNode = source._rootNode;
-    *_image = *source._image;
+    _chatLogic->SetChatbotHandle(this);
+
+    _image = source._image;
     source._currentNode = nullptr;
     source._chatLogic = nullptr;
     source._rootNode = nullptr;
@@ -82,10 +83,10 @@ ChatBot::ChatBot(const ChatBot &source)
 {   
     _currentNode = source._currentNode;
     _chatLogic = source._chatLogic;
-    _chatLogic->SetChatbotHandle(this);
     _rootNode = source._rootNode;
-    *_image = *source._image;
-    
+    _chatLogic->SetChatbotHandle(this);
+
+    _image = new wxBitmap(*source._image);
     std::cout << "COPYING content of instance " << &source << " to instance " << this << std::endl;
 }
 ChatBot &ChatBot::operator=(ChatBot& source){ 
@@ -95,10 +96,9 @@ ChatBot &ChatBot::operator=(ChatBot& source){
  
     _currentNode = source._currentNode;
     _chatLogic = source._chatLogic;
-    _chatLogic->SetChatbotHandle(this);
     _rootNode = source._rootNode;
-    _image = new wxBitmap();
-    *_image = *source._image;
+    _chatLogic->SetChatbotHandle(this);
+    _image = source._image;
     
     return *this;
 }
