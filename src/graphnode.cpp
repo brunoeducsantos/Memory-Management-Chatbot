@@ -29,16 +29,15 @@ _childEdges.push_back(move(edge));
 
 //// STUDENT CODE
 ////
-void GraphNode::MoveChatbotHere(ChatBot *chatbot)
+void GraphNode::MoveChatbotHere(unique_ptr<ChatBot> chatbot)
 {
-    _chatBot = new ChatBot(move(*chatbot));
+    _chatBot = new ChatBot(*chatbot);
     _chatBot->SetCurrentNode(this);
 }
 
 void GraphNode::MoveChatbotToNewNode(GraphNode *newNode)
 {
-    newNode->MoveChatbotHere(_chatBot);
-    _chatBot = nullptr; // invalidate pointer at source
+    newNode->MoveChatbotHere(unique_ptr<ChatBot>(_chatBot));
 }
 
 GraphEdge *GraphNode::GetChildEdgeAtIndex(int index)
