@@ -90,9 +90,9 @@ ChatBot::ChatBot(const ChatBot &source)
     _image= source._image;
     std::cout << "COPYING content of instance " << &source << " to instance " << this << std::endl;
 }
-ChatBot &ChatBot::operator=(ChatBot& source){ 
+ChatBot &ChatBot::operator=(const ChatBot& source){ 
 
-     std::cout << "MOVING (assign) instance " << &source << " to instance " << this << std::endl;
+     std::cout << "COPY (assign) instance " << &source << " to instance " << this << std::endl;
     if (this == &source) return *this;
  
     _currentNode = source._currentNode;

@@ -30,7 +30,7 @@ public:
     ChatBot(ChatBot && source);
     ChatBot &operator=(ChatBot &&source); //move assignment operator
     ChatBot(const ChatBot & source);
-    ChatBot &operator=(ChatBot &source); // copy assignment operator
+    ChatBot &operator=(const ChatBot &source); // copy assignment operator
 
     // getters / setters
     void SetCurrentNode(GraphNode *node);

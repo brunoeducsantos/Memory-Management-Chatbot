@@ -158,7 +158,7 @@ void ChatLogic::LoadAnswerGraphFromFile(std::string filename)
 
  
     // identify root node
-    GraphNode *rootNode ;
+    GraphNode *rootNode =nullptr;
     for (auto it = std::begin(_nodes); it != std::end(_nodes); ++it)
     {
         // search for nodes which have no incoming edges
@@ -179,8 +179,10 @@ void ChatLogic::LoadAnswerGraphFromFile(std::string filename)
     // add chatbot to graph root node
      ChatBot _chatbot("../images/chatbot.png") ;
      _chatbot.SetChatLogicHandle(this);
+     _chatbot.SetRootNode(rootNode);
+
      rootNode->MoveChatbotHere(move(_chatbot));
-    
+         
 }
 
 void ChatLogic::SetPanelDialogHandle(ChatBotPanelDialog *panelDialog)
