@@ -43,12 +43,10 @@ ChatBot::~ChatBot()
     }
 }
 
-//// STUDENT CODE
-////
 ChatBot::ChatBot(ChatBot &&source)
 {
 
-    std::cout << "MOVING (assign) instance " << &source << " to instance " << this << std::endl;
+    std::cout << "MOVING (Constructor) instance " << &source << " to instance " << this << std::endl;
 
     _currentNode = source._currentNode;
     _chatLogic = source._chatLogic;
@@ -105,8 +103,6 @@ ChatBot &ChatBot::operator=(ChatBot& source){
     
     return *this;
 }
-////
-//// EOF STUDENT CODE
 
 void ChatBot::ReceiveMessageFromUser(std::string message)
 {
